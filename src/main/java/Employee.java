@@ -29,12 +29,15 @@ public class Employee extends Person {
         this.role = role;
     }
 
+    public DecimalFormat getDecimalFormat() {
+        return new DecimalFormat("#,##0.00");
+    }
+
     @Override
     public String toString() {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/M/y");
-        DecimalFormat decimalFormatter = new DecimalFormat("#,##0.00");
 
-        return "Employee nome: " + getName() + ", data de Nascimento: " + getBirthDate().format(dateFormatter) + ", salary " + decimalFormatter.format(salary) + ", role: " + role;
+        return "Employee nome: " + getName() + ", data de Nascimento: " + getBirthDate().format(dateFormatter) + ", salary " + getDecimalFormat().format(salary) + ", role: " + role;
     }
 
 }

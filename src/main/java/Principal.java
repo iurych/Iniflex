@@ -1,12 +1,22 @@
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Principal {
+
+    private static final BigDecimal MIN_WAGE = new BigDecimal("1212.00");
+    private DecimalFormat getDecimalFormat(Employee employee) {
+        return employee.getDecimalFormat();
+    }
     public static void main(String[] args) {
+
+
         // 3.1 Inserir todos os funcionários
         List<Employee> employeeList = new ArrayList<>();
+
 
         employeeList.add(new Employee("Maria", LocalDate.of(1990, 11, 10), new BigDecimal("2009.44"), "Operador"));
         employeeList.add(new Employee("João", LocalDate.of(1991, 5, 12), new BigDecimal("2284.38"), "Operador"));
@@ -18,6 +28,11 @@ public class Principal {
         employeeList.add(new Employee("Laura", LocalDate.of(1994, 7, 8), new BigDecimal("3017.45"), "Gerente"));
         employeeList.add(new Employee("Heloísa", LocalDate.of(2003, 5, 24), new BigDecimal("1606.85"), "Eletricista"));
         employeeList.add(new Employee("Helena", LocalDate.of(1996, 9, 2), new BigDecimal("2799.93"), "Gerente"));
+
+        DecimalFormat decimalFormatter = employeeList.stream()
+                .findFirst()
+                .get()
+                .getDecimalFormat();
 
         // 3.2 Remover Funcionário "João"
 //        employeeList.removeIf(employee -> employee.getName().equals("João"));
@@ -31,6 +46,7 @@ public class Principal {
         */
 
         // 3.4 Aumentar Salário em 10%
+
         /*
         double additionFactor = 1.1;
         BigDecimal additionFactorAsBigDecimal = BigDecimal.valueOf(additionFactor);
@@ -39,6 +55,10 @@ public class Principal {
             BigDecimal employeeSalary = employee.getSalary();
             BigDecimal raisedSalary = employeeSalary.multiply(additionFactorAsBigDecimal);
             employee.setSalary(raisedSalary);
+        }
+
+        for (Employee employee : employeeList) {
+            System.out.println(employee);
         }
         */
 
@@ -91,12 +111,22 @@ public class Principal {
         }
         */
 
-        // 3.11  Soma o salário de todos os funcionários
-       BigDecimal totalSalarios = funcionarios.stream()
-            .mapToDouble(Funcionario::getSalario)
-            .sum();
 
-        System.out.println("\nTotal de Salários: R$ " + formatarValor(totalSalarios));
+        // 3.11  Soma o salário de todos os funcionários
+    /*
+
+        BigDecimal amount = employeeList.stream()
+            .map(Employee::getSalary)
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        System.out.println("Total de Salários: R$ " + decimalFormatter.format(amount));
+    */
+        // 3.12 – Imprimir quantos salários mínimos ganha cada funcionário
+
+        for (Employee e : employeeList) {
+            BigDecimal amountOfMinWage =  e.getSalary().divide(MIN_WAGE, 2, RoundingMode.HALF_UP);
+            System.out.println("nome: " + e.getName() + ", Salários mínimos: " + decimalFormatter.format(amountOfMinWage));
+        }
 
     }
 }
