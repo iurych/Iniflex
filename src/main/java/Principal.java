@@ -1,9 +1,6 @@
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Principal {
@@ -52,7 +49,9 @@ public class Principal {
             groupedByRole.computeIfAbsent(employee.getRole(), E -> new ArrayList<>())
                     .add(employee.getName());
         }
+        */
 
+        /*
         // 3.6 Imprimir Funcionários Agrupados
         for (Map.Entry<String, List<String>> entry : groupedByRole.entrySet()) {
             System.out.println("Função: " + entry.getKey());
@@ -62,28 +61,42 @@ public class Principal {
         }
          */
 
+        /*
         // 3.8 Imprimir funcionários com aniversário em 10/12
         List<Employee> Birthdays = employeeList.stream()
             .filter(e -> e.getBirthDate().getMonthValue() == 10 || e.getBirthDate().getMonthValue() == 12).toList();
         System.out.println("Funcionários que fazem aniversário nos meses 10 e 12:");
         Birthdays.forEach(System.out::println);
+        */
 
-        // 3.9 Funcionário com Maior Idade
-//        Funcionario funcionarioMaisIdade = encontrarFuncionarioMaisVelho(funcionarios);
-//        System.out.println("\nFuncionário com Maior Idade:");
-//        System.out.println(funcionarioMaisIdade);
+        /*
+        // 3.9 Imprimir funcionário com maior idade
+        Employee oldestEmployee = employeeList.stream()
+                .min(Comparator.comparing(Employee::getBirthDate))
+                .orElseThrow(NoSuchElementException::new);
+        int age = LocalDate.now().getYear() - oldestEmployee.getBirthDate().getYear();
+        if (LocalDate.now().getDayOfYear() < oldestEmployee.getBirthDate().getDayOfYear()) {
+            age--;
+        }
 
-        // 3.10 Ordenar por Nome Alfabético
-//        Collections.sort(funcionarios, Comparator.comparing(Funcionario::getNome));
-//        System.out.println("\nLista de Funcionários Ordenada por Nome:");
-//        imprimirFuncionarios(funcionarios);
+        System.out.println("Funcionário mais antigo: " + oldestEmployee.getName() + ", " + "Idade: " + age );
+        */
+
+        /*
+        // 3.10 Imprimir os funcionários em ordem alfabética
+        employeeList.sort(Comparator.comparing(Employee::getName));
+        System.out.println("\nLista de funcionários ordenada por nome:");
+        for (Employee employee : employeeList) {
+            System.out.println(employee);
+        }
+        */
 
         // 3.11  Soma o salário de todos os funcionários
-//        BigDecimal totalSalarios = funcionarios.stream()
-//            .mapToDouble(Funcionario::getSalario)
-//            .sum();
+       BigDecimal totalSalarios = funcionarios.stream()
+            .mapToDouble(Funcionario::getSalario)
+            .sum();
 
-//        System.out.println("\nTotal de Salários: R$ " + formatarValor(totalSalarios));
+        System.out.println("\nTotal de Salários: R$ " + formatarValor(totalSalarios));
 
     }
 }
