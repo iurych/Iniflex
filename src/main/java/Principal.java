@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Principal {
     public static void main(String[] args) {
@@ -44,6 +45,7 @@ public class Principal {
         }
         */
 
+        /*
         // 3.5 Agrupar por Função (Map)
         Map<String, List<String>> groupedByRole = new HashMap<>();
         for (Employee employee : employeeList) {
@@ -58,9 +60,13 @@ public class Principal {
                 System.out.println("    " + role);
             }
         }
+         */
 
-        // 3.8 Funcionários com Aniversário em Outubro/Dezembro
-//        imprimirFuncionariosPorAniversario(funcionarios, Arrays.asList(10, 12));
+        // 3.8 Imprimir funcionários com aniversário em 10/12
+        List<Employee> Birthdays = employeeList.stream()
+            .filter(e -> e.getBirthDate().getMonthValue() == 10 || e.getBirthDate().getMonthValue() == 12).toList();
+        System.out.println("Funcionários que fazem aniversário nos meses 10 e 12:");
+        Birthdays.forEach(System.out::println);
 
         // 3.9 Funcionário com Maior Idade
 //        Funcionario funcionarioMaisIdade = encontrarFuncionarioMaisVelho(funcionarios);
