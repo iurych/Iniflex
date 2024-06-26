@@ -35,19 +35,19 @@ public class Principal {
                 .getDecimalFormat();
 
         // 3.2 Remover Funcionário "João"
-//        employeeList.removeIf(employee -> employee.getName().equals("João"));
+        employeeList.removeIf(employee -> employee.getName().equals("João"));
 
         // 3.3 Imprimir todos os Funcionários
-       /*
+
         System.out.println("Lista de funcionários");
         for (Employee employee : employeeList) {
             System.out.println(employee);
         }
-        */
+
 
         // 3.4 Aumentar Salário em 10%
 
-        /*
+
         double additionFactor = 1.1;
         BigDecimal additionFactorAsBigDecimal = BigDecimal.valueOf(additionFactor);
 
@@ -60,18 +60,18 @@ public class Principal {
         for (Employee employee : employeeList) {
             System.out.println(employee);
         }
-        */
 
-        /*
+
+
         // 3.5 Agrupar por Função (Map)
         Map<String, List<String>> groupedByRole = new HashMap<>();
         for (Employee employee : employeeList) {
             groupedByRole.computeIfAbsent(employee.getRole(), E -> new ArrayList<>())
                     .add(employee.getName());
         }
-        */
 
-        /*
+
+
         // 3.6 Imprimir Funcionários Agrupados
         for (Map.Entry<String, List<String>> entry : groupedByRole.entrySet()) {
             System.out.println("Função: " + entry.getKey());
@@ -79,17 +79,17 @@ public class Principal {
                 System.out.println("    " + role);
             }
         }
-         */
 
-        /*
+
+
         // 3.8 Imprimir funcionários com aniversário em 10/12
         List<Employee> Birthdays = employeeList.stream()
             .filter(e -> e.getBirthDate().getMonthValue() == 10 || e.getBirthDate().getMonthValue() == 12).toList();
         System.out.println("Funcionários que fazem aniversário nos meses 10 e 12:");
         Birthdays.forEach(System.out::println);
-        */
 
-        /*
+
+
         // 3.9 Imprimir funcionário com maior idade
         Employee oldestEmployee = employeeList.stream()
                 .min(Comparator.comparing(Employee::getBirthDate))
@@ -100,27 +100,27 @@ public class Principal {
         }
 
         System.out.println("Funcionário mais antigo: " + oldestEmployee.getName() + ", " + "Idade: " + age );
-        */
 
-        /*
+
+
         // 3.10 Imprimir os funcionários em ordem alfabética
         employeeList.sort(Comparator.comparing(Employee::getName));
         System.out.println("\nLista de funcionários ordenada por nome:");
         for (Employee employee : employeeList) {
             System.out.println(employee);
         }
-        */
+
 
 
         // 3.11  Soma o salário de todos os funcionários
-    /*
+
 
         BigDecimal amount = employeeList.stream()
             .map(Employee::getSalary)
             .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         System.out.println("Total de Salários: R$ " + decimalFormatter.format(amount));
-    */
+
         // 3.12 – Imprimir quantos salários mínimos ganha cada funcionário
 
         for (Employee e : employeeList) {
